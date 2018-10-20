@@ -1,28 +1,28 @@
-import { HeroState, HeroActionTypes } from './types'
 import { Reducer } from 'redux'
+import { HeroesActionTypes, HeroesState } from './types'
 
-const initialState: HeroState = {
+const initialState: HeroesState = {
   data: [],
   error: undefined,
   loading: false,
 }
 
-export const heroReducer: Reducer<HeroState> = (state = initialState, action) => {
+export const heroesReducer: Reducer<HeroesState> = (state = initialState, action) => {
   switch (action.type) {
-    case HeroActionTypes.FETCH_REQUEST: {
+    case HeroesActionTypes.FETCH_REQUEST: {
       return {
         ...state,
         loading: true,
       }
     }
-    case HeroActionTypes.FETCH_SUCCESS: {
+    case HeroesActionTypes.FETCH_SUCCESS: {
       return {
         ...state,
         loading: false,
         data: action.payload,
       }
     }
-    case HeroActionTypes.FETCH_ERROR: {
+    case HeroesActionTypes.FETCH_ERROR: {
       return {
         ...state,
         loading: false,

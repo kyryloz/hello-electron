@@ -2,9 +2,9 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { ApplicationState, ConnectedReduxProps } from '../../store'
-import { fetchRequest } from '../../store/hero/actions'
-import { Hero } from '../../store/hero/types'
 import { HeroesPageView } from './HeroesPageView'
+import { fetchRequest } from '../../store/heroes/actions';
+import { Hero } from '../../store/heroes/types';
 
 export interface PropsFromState {
   loading: boolean
@@ -19,9 +19,9 @@ interface PropsFromDispatch {
 type AllProps = PropsFromState & PropsFromDispatch & ConnectedReduxProps
 
 const mapStateToProps = (state: ApplicationState) => ({
-  loading: state.hero.loading,
-  data: state.hero.data,
-  error: state.hero.error,
+  loading: state.heroes.loading,
+  data: state.heroes.data,
+  error: state.heroes.error,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

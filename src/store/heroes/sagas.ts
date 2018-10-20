@@ -1,11 +1,11 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
-import { HeroActionTypes } from './types'
+import { HeroesActionTypes } from './types'
 import { fetchError, fetchSuccess } from './actions'
 import { callApi } from '../../utils/callApi'
 
 const handleFetch = function*() {
   try {
-    const res = yield call(callApi, 'get', '/heroStats')
+    const res = yield call(callApi, 'get', '/heroes')
 
     if (res.error) {
       yield put(fetchError(res.error))
@@ -22,7 +22,7 @@ const handleFetch = function*() {
 }
 
 const watchFetchRequest = function*() {
-  yield takeEvery(HeroActionTypes.FETCH_REQUEST, handleFetch)
+  yield takeEvery(HeroesActionTypes.FETCH_REQUEST, handleFetch)
 }
 
 export const heroesSaga = function*() {

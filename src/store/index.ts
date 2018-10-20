@@ -1,28 +1,24 @@
-import { combineReducers, Action, AnyAction, Dispatch } from 'redux'
+import { Action, AnyAction, combineReducers, Dispatch } from 'redux'
 import { all, fork } from 'redux-saga/effects'
-import { LayoutState } from './layout/types'
-import { layoutReducer } from './layout/reducer'
-import { HeroState } from './hero/types'
-import { heroReducer } from './hero/reducer'
-import { TeamState } from './team/types'
-import { teamReducer } from './team/reducer'
-import { heroesSaga } from './hero/sagas'
-import { teamSaga } from './team/sagas'
+import { heroesReducer } from './heroes/reducer'
+import { heroesSaga } from './heroes/sagas'
+import { HeroesState } from './heroes/types'
+import { heroMatchReducer } from './heroMatch/reducer'
+import { heroMatchSaga } from './heroMatch/sagas'
+import { HeroMatchState } from './heroMatch/types'
 
 export interface ApplicationState {
-  layout: LayoutState
-  hero: HeroState
-  team: TeamState
+  heroes: HeroesState
+  heroMatch: HeroMatchState
 }
 
 export const rootReducer = combineReducers<ApplicationState>({
-  layout: layoutReducer,
-  hero: heroReducer,
-  team: teamReducer,
+  heroes: heroesReducer,
+  heroMatch: heroMatchReducer,
 })
 
 export const rootSaga = function*() {
-  yield all([fork(heroesSaga), fork(teamSaga)])
+  yield all([fork(heroesSaga), fork(heroMatchSaga)])
 }
 
 export interface ConnectedReduxProps<A extends Action = AnyAction> {

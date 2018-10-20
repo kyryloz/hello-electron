@@ -21,8 +21,9 @@
       "check-open-brace"],
     "quotemark": [true,
       "single",
+      "jsx-double",
       "avoid-escape"],
-    "semicolon": [true, "always"],
+    "semicolon": [false, "always"],
     "typedef-whitespace": [true, {
       "call-signature": "nospace",
       "index-signature": "nospace",

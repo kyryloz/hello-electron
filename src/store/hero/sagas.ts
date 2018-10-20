@@ -3,11 +3,9 @@ import { HeroActionTypes } from './types'
 import { fetchError, fetchSuccess } from './actions'
 import { callApi } from '../../utils/callApi'
 
-const API_ENDPOINT = 'https://api.opendota.com'
-
 const handleFetch = function*() {
   try {
-    const res = yield call(callApi, 'get', API_ENDPOINT, '/heroStats')
+    const res = yield call(callApi, 'get', '/heroStats')
 
     if (res.error) {
       yield put(fetchError(res.error))

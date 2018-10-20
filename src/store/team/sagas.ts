@@ -3,11 +3,9 @@ import { callApi } from '../../utils/callApi'
 import { fetchError, fetchSuccess, selectTeam, teamSelected } from './actions'
 import { TeamActionTypes } from './types'
 
-const API_ENDPOINT = 'https://api.opendota.com'
-
 const handleFetch = function*() {
   try {
-    const result = yield call(callApi, 'get', API_ENDPOINT, '/teams')
+    const result = yield call(callApi, 'get', '/teams')
 
     if (result.error) {
       yield put(fetchError(result.error))
@@ -25,8 +23,8 @@ const handleFetch = function*() {
 
 const handleSelect = function*(action: ReturnType<typeof selectTeam>) {
   try {
-    const detail = yield call(callApi, 'get', API_ENDPOINT, `/teams/${action.payload}`)
-    const players = yield call(callApi, 'get', API_ENDPOINT, `/teams/${action.payload}/players`)
+    const detail = yield call(callApi, 'get', `/teams/${action.payload}`)
+    const players = yield call(callApi, 'get', `/teams/${action.payload}/players`)
 
     if (detail.error || players.error) {
       yield put(fetchError(detail.error || players.error))

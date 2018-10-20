@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchRequest: () => dispatch(fetchRequest()),
 })
 
-class HeroesPageContainer extends React.Component<AllProps> {
+class HeroesPageContainer extends React.PureComponent<AllProps> {
   componentDidMount() {
     this.props.fetchRequest()
   }

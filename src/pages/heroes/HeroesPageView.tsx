@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { API_ENDPOINT } from '../../utils/callApi'
 import { PropsFromState } from './HeroesPageContainer'
-import { API_ENDPOINT } from '../../utils/callApi';
 
 export const HeroesPageView: React.SFC<PropsFromState> = ({ loading, data, errors }) => (
   <tbody>
@@ -8,9 +8,11 @@ export const HeroesPageView: React.SFC<PropsFromState> = ({ loading, data, error
     {errors && <p>{errors}</p>}
     {data.map(hero => (
       <tr key={hero.id}>
-        <p>{hero.name}</p>
+        <td>{hero.name}</td>
         <td>{hero.roles.join(', ')}</td>
-        <td><img src={`${API_ENDPOINT}${hero.icon}`}/></td>
+        <td>
+          <img src={`${API_ENDPOINT}${hero.icon}`} />
+        </td>
       </tr>
     ))}
   </tbody>

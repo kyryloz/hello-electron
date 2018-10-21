@@ -1,6 +1,6 @@
 {
-  "name": "my-new-project",
-  "productName": "my-new-project",
+  "name": "hello-electron",
+  "productName": "hello-electron",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": "src/index.ts",
@@ -32,7 +32,7 @@
         "packageManager": "yarn"
       },
       "electronWinstallerConfig": {
-        "name": "my_new_project"
+        "name": "hello_electron"
       },
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
@@ -42,7 +42,7 @@
       },
       "windowsStoreConfig": {
         "packageName": "",
-        "name": "mynewproject"
+        "name": "helloelectron"
       }
     }
   },

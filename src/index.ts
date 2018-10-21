@@ -1,11 +1,11 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, Menu } from 'electron'
 import { enableLiveReload } from 'electron-compile'
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
   REDUX_DEVTOOLS,
 } from 'electron-devtools-installer'
+import { CREATE_NEW_WINDOW, GET_WINDOW_COUNT, RECEIVE_WINDOW_COUNT } from './main/events'
 import { createMainMenu } from './main/menu'
-import { RECEIVE_WINDOW_COUNT, CREATE_NEW_WINDOW, GET_WINDOW_COUNT } from './main/events'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -40,7 +40,10 @@ const createWindow = async (params?: Electron.BrowserWindowConstructorOptions) =
   if (isDevMode) {
     await installExtension(REACT_DEVELOPER_TOOLS)
     await installExtension(REDUX_DEVTOOLS)
-    mainWindow.webContents.openDevTools()
+    // tslint:disable-next-line:no-require-imports
+    require('devtron').install()
+    // open dev tools on start
+    // mainWindow.webContents.openDevTools()
   }
 
   // Emitted when the window is closed.

@@ -1,4 +1,4 @@
-import { app, Menu } from 'electron'
+import { app, Menu, ipcMain } from 'electron'
 import { showMessage, showSaveDialog, showOpenDialog } from './dialogs'
 
 const isWindows = process.platform === 'win32'
@@ -43,6 +43,8 @@ export const createMainMenu = (mainWindow: Electron.BrowserWindow) => {
           label: 'Refresh',
           accelerator: 'CmdOrCtrl+R',
           click() {
+            // WARNING! the window can be destroyed
+            // works only in single-window environment
             mainWindow.reload()
           },
         },

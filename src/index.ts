@@ -4,7 +4,8 @@ import installExtension, {
   REACT_DEVELOPER_TOOLS,
   REDUX_DEVTOOLS,
 } from 'electron-devtools-installer'
-import { createMainMenu } from './mainMenu'
+import { createMainMenu } from './main/menu'
+import { RECEIVE_WINDOW_COUNT, CREATE_NEW_WINDOW, GET_WINDOW_COUNT } from './main/events'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,7 +19,7 @@ if (isDevMode) {
 
 const sendWindowCount = () => {
   windows.forEach(win => {
-    win.webContents.send('window-count', { count: windows.length })
+    win.webContents.send(RECEIVE_WINDOW_COUNT, { count: windows.length })
   })
 }
 
@@ -32,8 +33,8 @@ const createWindow = async (params?: Electron.BrowserWindowConstructorOptions) =
   })
 
   // and load the index.html of the app.
-  // mainWindow.loadURL(`file://${__dirname}/index.html`)
-  mainWindow.loadURL(`file://${__dirname}/index2.html`)
+  // mainWindow.loadURL(`file://${__dirname}/renderer/index.html`)
+  mainWindow.loadURL(`file://${__dirname}/renderer/noReact_index.html`)
 
   // Open the DevTools.
   if (isDevMode) {
@@ -68,11 +69,11 @@ const createWindow = async (params?: Electron.BrowserWindowConstructorOptions) =
 app.on('ready', () => {
   createWindow()
 
-  ipcMain.on('new-window', (_event: any, props: Electron.BrowserWindowConstructorOptions) => {
+  ipcMain.on(CREATE_NEW_WINDOW, (_event: any, props: Electron.BrowserWindowConstructorOptions) => {
     createWindow(props)
   })
 
-  ipcMain.on('get-window-count', () => {
+  ipcMain.on(GET_WINDOW_COUNT, () => {
     sendWindowCount()
   })
 })

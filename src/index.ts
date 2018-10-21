@@ -7,6 +7,10 @@ import installExtension, {
 import { CREATE_NEW_WINDOW, GET_WINDOW_COUNT, RECEIVE_WINDOW_COUNT } from './main/events'
 import { createMainMenu } from './main/menu'
 
+// How to generate icons:
+// electron-icon-maker -i ./src/resources/image.png ./build
+// copy icon.icns, icon.ico to the root
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let windows: Electron.BrowserWindow[] = []

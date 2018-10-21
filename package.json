@@ -1,6 +1,6 @@
 {
   "name": "hello-electron",
-  "productName": "hello-electron",
+  "productName": "Hello Electron",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": "src/index.ts",
@@ -21,15 +21,13 @@
           "squirrel"
         ],
         "darwin": [
+          "dmg",
           "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
         ]
       },
       "electronPackagerConfig": {
-        "packageManager": "yarn"
+        "packageManager": "yarn",
+        "icon": "./icon"
       },
       "electronWinstallerConfig": {
         "name": "hello_electron"
@@ -41,7 +39,7 @@
         "name": ""
       },
       "windowsStoreConfig": {
-        "packageName": "",
+        "packageName": "com.hello.electron.app",
         "name": "helloelectron"
       }
     }

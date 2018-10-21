@@ -1,9 +1,10 @@
 import { app, BrowserWindow } from 'electron'
+import { enableLiveReload } from 'electron-compile'
 import installExtension, {
   REACT_DEVELOPER_TOOLS,
   REDUX_DEVTOOLS,
 } from 'electron-devtools-installer'
-import { enableLiveReload } from 'electron-compile'
+import { createMainMenu } from './mainMenu'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -20,10 +21,12 @@ const createWindow = async () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    show: false,
   })
 
   // and load the index.html of the app.
-  mainWindow.loadURL(`file://${__dirname}/index.html`)
+  // mainWindow.loadURL(`file://${__dirname}/index.html`)
+  mainWindow.loadURL(`file://${__dirname}/index2.html`)
 
   // Open the DevTools.
   if (isDevMode) {
@@ -39,6 +42,14 @@ const createWindow = async () => {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  mainWindow.on('ready-to-show', () => {
+    if (mainWindow) {
+      mainWindow.show()
+    }
+  })
+
+  createMainMenu(mainWindow)
 }
 
 // This method will be called when Electron has finished

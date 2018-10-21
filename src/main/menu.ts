@@ -1,4 +1,4 @@
-import { app, Menu, ipcMain } from 'electron'
+import { app, Menu } from 'electron'
 import { showMessage, showSaveDialog, showOpenDialog } from './dialogs'
 
 const isWindows = process.platform === 'win32'
